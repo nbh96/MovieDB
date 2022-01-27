@@ -8,7 +8,7 @@ using MovieDB.Models;
 namespace MovieDB.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20220127233754_Initial")]
+    [Migration("20220127234434_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,44 @@ namespace MovieDB.Migrations
                     b.HasKey("ApplicationId");
 
                     b.ToTable("Responses");
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationId = 1,
+                            Category = "Action",
+                            Director = "Christopher Nolan",
+                            Edited = false,
+                            LentTo = "",
+                            Notes = "",
+                            Rating = "PG-13",
+                            Title = "Batman Begins",
+                            Year = 2005
+                        },
+                        new
+                        {
+                            ApplicationId = 2,
+                            Category = "Action",
+                            Director = "Christopher Nolan",
+                            Edited = false,
+                            LentTo = "",
+                            Notes = "",
+                            Rating = "PG-13",
+                            Title = "The Dark Knight",
+                            Year = 2008
+                        },
+                        new
+                        {
+                            ApplicationId = 3,
+                            Category = "Action",
+                            Director = "Christopher Nolan",
+                            Edited = false,
+                            LentTo = "",
+                            Notes = "",
+                            Rating = "PG-13",
+                            Title = "The Dark Knight Rises",
+                            Year = 2012
+                        });
                 });
 #pragma warning restore 612, 618
         }

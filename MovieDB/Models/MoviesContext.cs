@@ -30,7 +30,7 @@ namespace MovieDB.Models
                 },
                 new ApplicationResponse
                 {
-                    ApplicationId = 1,
+                    ApplicationId = 2,
                     Category = "Action",
                     Title = "The Dark Knight",
                     Year = 2008,
@@ -42,7 +42,7 @@ namespace MovieDB.Models
                 },
                 new ApplicationResponse
                 {
-                    ApplicationId = 1,
+                    ApplicationId = 3,
                     Category = "Action",
                     Title = "The Dark Knight Rises",
                     Year = 2012,

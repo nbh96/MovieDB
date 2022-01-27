@@ -25,6 +25,21 @@ namespace MovieDB.Migrations
                 {
                     table.PrimaryKey("PK_Responses", x => x.ApplicationId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "ApplicationId", "Category", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 1, "Action", "Christopher Nolan", false, "", "", "PG-13", "Batman Begins", 2005 });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "ApplicationId", "Category", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 2, "Action", "Christopher Nolan", false, "", "", "PG-13", "The Dark Knight", 2008 });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "ApplicationId", "Category", "Director", "Edited", "LentTo", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 3, "Action", "Christopher Nolan", false, "", "", "PG-13", "The Dark Knight Rises", 2012 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
