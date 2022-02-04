@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace MovieDB.Models
 {
-    public class ApplicationResponse
+    public class MovieResponse
     {
         [Key]
         [Required]
         public int ApplicationId { get; set; }
-        [Required]
-        public string Category { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Movie Title is Required")]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }
@@ -25,5 +23,9 @@ namespace MovieDB.Models
         public string LentTo { get; set; }
         [MaxLength(100)]
         public string Notes { get; set; }
+
+        //Build foreign key relationship
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

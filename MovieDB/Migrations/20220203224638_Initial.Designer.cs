@@ -8,7 +8,7 @@ using MovieDB.Models;
 namespace MovieDB.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20220127234434_Initial")]
+    [Migration("20220203224638_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,8 @@ namespace MovieDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -54,13 +53,15 @@ namespace MovieDB.Migrations
 
                     b.HasKey("ApplicationId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             ApplicationId = 1,
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Christopher Nolan",
                             Edited = false,
                             LentTo = "",
@@ -72,7 +73,7 @@ namespace MovieDB.Migrations
                         new
                         {
                             ApplicationId = 2,
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Christopher Nolan",
                             Edited = false,
                             LentTo = "",
@@ -84,7 +85,7 @@ namespace MovieDB.Migrations
                         new
                         {
                             ApplicationId = 3,
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Christopher Nolan",
                             Edited = false,
                             LentTo = "",
@@ -93,6 +94,56 @@ namespace MovieDB.Migrations
                             Title = "The Dark Knight Rises",
                             Year = 2012
                         });
+                });
+
+            modelBuilder.Entity("MovieDB.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "RomCom"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Documentary"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "History"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Mockumentary"
+                        });
+                });
+
+            modelBuilder.Entity("MovieDB.Models.ApplicationResponse", b =>
+                {
+                    b.HasOne("MovieDB.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

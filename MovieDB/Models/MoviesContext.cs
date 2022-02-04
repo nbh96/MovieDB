@@ -12,14 +12,24 @@ namespace MovieDB.Models
         {
 
         }
-        public DbSet<ApplicationResponse> Responses { get; set; }
+        public DbSet<MovieResponse> Responses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<ApplicationResponse>().HasData(
-                new ApplicationResponse
+            mb.Entity<Category>().HasData(
+                new Category { CategoryId = 1, CategoryName = "Action" },
+                new Category { CategoryId = 2, CategoryName = "RomCom" },
+                new Category { CategoryId = 3, CategoryName = "Documentary" },
+                new Category { CategoryId = 4, CategoryName = "History" },
+                new Category { CategoryId = 5, CategoryName = "Mockumentary" }
+                );
+
+            mb.Entity<MovieResponse>().HasData(
+                new MovieResponse
                 {
                     ApplicationId = 1,
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "Batman Begins",
                     Year = 2005,
                     Director = "Christopher Nolan",
@@ -28,10 +38,10 @@ namespace MovieDB.Models
                     LentTo = "",
                     Notes = ""
                 },
-                new ApplicationResponse
+                new MovieResponse
                 {
                     ApplicationId = 2,
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "The Dark Knight",
                     Year = 2008,
                     Director = "Christopher Nolan",
@@ -40,10 +50,10 @@ namespace MovieDB.Models
                     LentTo = "",
                     Notes = ""
                 },
-                new ApplicationResponse
+                new MovieResponse
                 {
                     ApplicationId = 3,
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "The Dark Knight Rises",
                     Year = 2012,
                     Director = "Christopher Nolan",
